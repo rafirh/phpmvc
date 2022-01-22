@@ -1,6 +1,7 @@
 <?php
     class App{
 
+        // Default contoller
         protected $controller = 'home'; // file
         protected $method = 'index'; // function
         protected $params = [];
@@ -13,6 +14,7 @@
                 $this->controller = $url[0];
                 unset($url[0]);
             }
+
             require_once '../app/controllers/' . $this->controller . '.php';
             $this->controller = new $this->controller;
 
@@ -29,7 +31,7 @@
                 $this->params = array_values($url);
             }
 
-            // Jalankan controller & method, serta kirimkan params jika ada
+            // Menjalankan controller & method, serta megirimkan params jika ada
             call_user_func_array([$this->controller, $this->method], $this->params);
         }
 
